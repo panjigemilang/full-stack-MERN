@@ -18,6 +18,9 @@
     //     })
     // }
 
-    const mongoURI = "mongodb+srv://panjigemilang:xtremesuper98@tmcluster-li9pg.mongodb.net/test?retryWrites=true";
+    // const mongoURI = "mongodb+srv://panjigemilang:xtremesuper98@tmcluster-li9pg.mongodb.net/test?retryWrites=true";
 
-    module.exports = mongoURI;
+    module.exports = {
+        mongoURI: "mongodb+srv://panjigemilang:xtremesuper98@tmcluster-li9pg.mongodb.net/test?retryWrites=true",
+        secretorKey: 'secret'
+    };
