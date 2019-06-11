@@ -8,9 +8,9 @@ const app = express()
 
 // Body Parser
 app.use(
-    bodyParser.urlencoded({
-        extended: false
-    })
+  bodyParser.urlencoded({
+    extended: false
+  })
 )
 app.use(bodyParser.json())
 
@@ -24,17 +24,17 @@ const db = require("./config/keys").mongoURI
 
 // Connect to MongoDB
 mongoose
-    .connect(db, {
-        useNewUrlParser: true
-    })
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.log(err))
+  .connect(db, {
+    useNewUrlParser: true
+  })
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err))
 
 // Passport Middleware
 app.use(passport.initialize())
 
 // Passport config
-require("./config/passport")(passport);
+require("./config/passport")(passport)
 
 // use routes
 app.use("/api/users", user)

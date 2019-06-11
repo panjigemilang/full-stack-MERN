@@ -36,12 +36,14 @@ router.post("/register", (req, res) => {
         email: "Email already exists"
       })
     } else {
+      // default avatar
       const avatar = gravatar.url(req.body.email, {
         s: "400",
         r: "pg",
         d: "mm"
       })
 
+      // make new user
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
@@ -49,6 +51,7 @@ router.post("/register", (req, res) => {
         avatar
       })
 
+      // bcrypting password
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           newUser.password = hash
@@ -102,7 +105,7 @@ router.post("/login", (req, res) => {
             (err, token) => {
               res.json({
                 success: true,
-                // we use Bearer protocol format
+                // use Bearer protocol format
                 token: "Bearer " + token
               })
             }
