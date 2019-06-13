@@ -21,6 +21,6 @@
     // const mongoURI = "mongodb+srv://panjigemilang:xtremesuper98@tmcluster-li9pg.mongodb.net/test?retryWrites=true";
 
     module.exports = {
-        mongoURI: "mongodb+srv://panjigemilang:xtremesuper98@tmcluster-li9pg.mongodb.net/test?retryWrites=true",
-        secretorKey: 'secret'
-    };
+        mongoURI: "mongodb+srv://panjigemilang:xtremesuper98@devconnector-vasnt.mongodb.net/test?retryWrites=true&w=majority",
+        secretorKey: "secret"
+    }
