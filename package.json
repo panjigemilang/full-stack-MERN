@@ -8,7 +8,8 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Panji Gemilang",
   "license": "MIT",
@@ -24,6 +25,8 @@
     "package.json": "^2.0.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "prop-types": "^15.7.2",
+    "react-scripts": "^3.0.1",
     "validator": "^10.11.0"
   },
   "devDependencies": {

@@ -117,7 +117,6 @@ router.post(
     const { errors, isValid } = validationProfile(req.body)
 
     if (!isValid) {
-      console.log(`what is error => ${errors}`)
       return res.status(404).json(errors)
     }
     // get fields
@@ -129,27 +128,28 @@ router.post(
     if (req.body.website) profileFields.website = req.body.website
     if (req.body.location) profileFields.location = req.body.location
     if (req.body.status) profileFields.status = req.body.status
+
     // Skills - split into array
     if (req.body.skills) {
-      profileFields.skills = req.body.skills.split()
+      profileFields.skills = req.body.skills.split(",")
     }
     if (req.body.bio) profileFields.bio = req.body.bio
     if (req.body.github) profileFields.github = req.body.github
     if (req.body.date) profileFields.date = req.body.date
 
-    // Experiences
-
-    // Education
     // Social
     profileFields.social = {}
     if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram
+    if (req.body.youtube) profileFields.social.youtube = req.body.youtube
+    if (req.body.dribbble) profileFields.social.dribbble = req.body.dribbble
+    if (req.body.twitter) profileFields.social.twitter = req.body.twitter
+    if (req.body.facebook) profileFields.social.facebook = req.body.facebook
 
     Profile.findOne({
       user: req.user.id
     }).then(profile => {
       if (profile) {
-        console.log(`it's profile that we bring \n ${profile}`)
         // Update
         Profile.findOneAndUpdate(
           {
@@ -162,11 +162,9 @@ router.post(
             new: true
           }
         ).then(profil => {
-          console.log(`why the F it's null? ${profil}`)
           res.json(profil)
         })
       } else {
-        console.log(`no profile found => ${profile}`)
         // check if handle exist so it would not have double handle
         Profile.findOne({
           handle: profileFields.handle

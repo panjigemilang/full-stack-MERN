@@ -186,22 +186,25 @@ router.post(
   "/comment/:user_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Post.findById(req.params.user_id).then(post => {
-      const { errors, isValid } = validationPost(req.body)
+    const { errors, isValid } = validationPost(req.body)
 
-      if (!isValid) {
-        return res.status(400).json(errors)
-      }
+    if (!isValid) {
+      return res.status(400).json(errors)
+    }
+
+    Post.findById(req.params.user_id).then(post => {
+      console.log("ini posts mau di unshift")
+      console.log(post)
 
       const comment = {
         user: req.user.id,
         text: req.body.text,
-        name: req.user.name,
-        avatar: req.user.avatar
+        name: req.body.name,
+        avatar: req.body.avatar
       }
 
       // add comment to array
-      post.unshift(comment)
+      post.comments.unshift(comment)
 
       post
         .save()

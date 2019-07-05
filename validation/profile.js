@@ -28,9 +28,24 @@ module.exports = function validateProfileinput(data) {
     errors.skills = "Skills field is required"
   }
 
+  if (!isEmpty(data.github)) {
+    let regex = /[./,";'{}()`~]/
+    if (regex.test(data.github)) {
+      errors.github =
+        "github username is not valid. can't resolve special characters"
+    }
+  }
+
   if (!isEmpty(data.website)) {
     if (!validator.isURL(data.website)) {
       errors.website = "URL is not valid"
+    }
+  }
+
+  if (!isEmpty(data.linkedin)) {
+    let regex = /(https:)/
+    if (!validator.isURL(data.linkedin) && regex.test(data.linkedin)) {
+      errors.linkedin = "linkedin URL is not valid"
     }
   }
 
@@ -40,15 +55,27 @@ module.exports = function validateProfileinput(data) {
     }
   }
 
-  if (!isEmpty(data.linkedin)) {
-    if (!validator.isURL(data.linkedin)) {
-      errors.linkedin = "linkedin URL is not valid"
+  if (!isEmpty(data.dribbble)) {
+    if (!validator.isURL(data.dribbble)) {
+      errors.dribbble = "dribbble URL is not valid"
     }
   }
 
-  if (!isEmpty(data.github)) {
-    if (!validator.isURL(data.github)) {
-      errors.github = "github URL is not valid"
+  if (!isEmpty(data.youtube)) {
+    if (!validator.isURL(data.youtube)) {
+      errors.youtube = "youtube URL is not valid"
+    }
+  }
+
+  if (!isEmpty(data.facebook)) {
+    if (!validator.isURL(data.facebook)) {
+      errors.facebook = "facebook URL is not valid"
+    }
+  }
+
+  if (!isEmpty(data.twitter)) {
+    if (!validator.isURL(data.twitter)) {
+      errors.twitter = "twitter URL is not valid"
     }
   }
 
