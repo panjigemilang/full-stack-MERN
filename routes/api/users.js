@@ -70,10 +70,10 @@ router.post("/login", (req, res) => {
   const email = req.body.email
   const password = req.body.password
 
-  const { err, isValid } = validationLogin(req.body)
+  const { errors, isValid } = validationLogin(req.body)
 
   if (!isValid) {
-    return res.status(400).json(err)
+    return res.status(400).json(errors)
   }
 
   // find user by email
@@ -81,9 +81,8 @@ router.post("/login", (req, res) => {
     email
   }).then(user => {
     if (!user) {
-      err.email = "User not found"
-      return res.status(404).json({
-        err
+      return res.status(400).json({
+        email: "user not found"
       })
     } else {
       bcrypt.compare(password, user.password).then(isMatch => {
@@ -111,9 +110,8 @@ router.post("/login", (req, res) => {
             }
           )
         } else {
-          err.password = "Password incorrect"
           return res.status(400).json({
-            err
+            password: "password incorrect"
           })
         }
       })

@@ -95,10 +95,22 @@ const ProfileSchema = new Schema({
     }
   ],
   social: {
+    linkedin: {
+      type: String
+    },
+    dribbble: {
+      type: String
+    },
     instagram: {
       type: String
     },
-    linkedin: {
+    youtube: {
+      type: String
+    },
+    facebook: {
+      type: String
+    },
+    twitter: {
       type: String
     }
   },
