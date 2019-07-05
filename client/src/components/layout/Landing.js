@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { Link } from "react-router-dom"
 import { PropTypes } from "prop-types"
 
 const mapStateToProps = state => ({
@@ -27,12 +28,12 @@ class Landing extends Component {
                   kami menghubungkan kalian semua disini!!
                 </p>
                 <hr />
-                <a href="/register" className="btn btn-lg btn-info mr-2">
-                  Sign Up
-                </a>
-                <a href="/login" className="btn btn-lg btn-light">
-                  Login
-                </a>
+                <Link to="/register" className="btn btn-lg btn-info mr-2">
+                  Daftar
+                </Link>
+                <Link to="/login" className="btn btn-lg btn-light">
+                  Masuk
+                </Link>
               </div>
             </div>
           </div>
